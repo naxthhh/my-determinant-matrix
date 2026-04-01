@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MY MATRIX GUA</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  
+  <link rel="stylesheet" href="style.css" />
+  
+  <script src="matriks.js" defer></script>
+</head>
+<body>
+
+<body>
+
+<audio id="bg-music" loop preload="auto">
+  <source src="assets/The 1975 - About You.mp3" type="audio/mpeg">
+</audio> 
+
+<div class="math-bg" id="math-bg"></div>
+
+<div class="wrapper">
+  <header class="header">
+    <span class="header-icon">🧮</span>
+    <h1>MY MATRIX 😎</h1>
+    <p>Gunakanlah MY MATRIX Secukupnya, Sisanya Hitung Sendiri Udah Gede</p>
+  </header>
+
+  <div class="card" id="step-1">
+    <div class="card-label"><span class="num">1</span> Mau matrix ordo berapa guys?</div>
+    <div class="order-row">
+      <label>Ordo:</label>
+      <div class="stepper">
+        <button class="step-btn" id="btn-dec">−</button>
+        <span id="order-display">3</span>
+        <button class="step-btn" id="btn-inc">+</button>
+      </div>
+      <button class="btn btn-main" id="btn-gen">Buat Matriks</button>
+    </div>
+  </div>
+
+  <div id="matrix-section">
+    <div class="card">
+      <div class="card-label"><span class="num">2</span> Input angkanya CEPAT!!!</div>
+      <div class="matrix-scroll">
+        <div class="m-grid" id="m-grid"></div>
+      </div>
+      <div class="err-msg" id="err-msg">ISI YANG BENER WOE!!!</div>
+      
+      <div class="act-row">
+        <button class="btn btn-calc" id="btn-calc">Hitung Determinan</button>
+        <button class="btn btn-act" id="btn-rand">Acak</button>
+        <button class="btn btn-act" id="btn-iden">Identitas</button>
+        <button class="btn btn-act" id="btn-clr">Hapus</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="result-section">
+    <div class="card">
+      <div class="card-label"><span class="num">3</span> Nih hasilnya!</div>
+      <div class="result-box">
+        <h3>det ( A ) =</h3>
+        <div class="result-num" id="result-num">0</div>
+        <p id="result-note"></p>
+      </div>
+      <button class="btn btn-reset" id="btn-reset">🔄 Hitung Ulang</button>
+    </div>
+  </div>
+
+  <footer class="footer">Dibuat dengan Logika Eliminasi Gauss</footer>
+</div>
+
+<div class="toast" id="toast">Notifikasi</div>
+
+</body>
+</html>
