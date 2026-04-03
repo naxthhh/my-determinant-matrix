@@ -110,8 +110,12 @@
   };
 
   const renderResult = (title, contentHTML, note = "") => {
-    hideError(); UI.resTitle.textContent = title; UI.resContent.innerHTML = contentHTML; UI.resNote.innerHTML = note;
-    UI.secResult.style.display = 'block'; setTimeout(() => UI.secResult.scrollIntoView({ behavior: 'smooth' }), 100);
+    hideError(); 
+    UI.resTitle.textContent = title; 
+    UI.resContent.innerHTML = contentHTML; 
+    if (UI.resNote) UI.resNote.innerHTML = note;
+    UI.secResult.style.display = 'block'; 
+    setTimeout(() => UI.secResult.scrollIntoView({ behavior: 'smooth' }), 100);
   };
 
   const renderMatrixGrid = (matrix) => {
@@ -131,12 +135,12 @@
     let A = dataA.matrix, B = dataB.matrix;
 
     if (type === 'add' || type === 'sub') {
-      if(state.A.r !== state.B.r || state.A.c !== state.B.c) return showError(`Gagal! Ordo Matriks A harus sama dengan B.`);
+      if(state.A.r !== state.B.r || state.A.c !== state.B.c) return showError(`Ordo Matriks A harus sama kaya B.`);
       renderResult(`Matriks A ${type === 'add' ? '+' : '−'} Matriks B`, renderMatrixGrid(MathOp.addSub(A, B, type === 'add')));
     }
     
     if (type === 'mul') {
-      if(state.A.c !== state.B.r) return showError(`Gagal! Kolom A harus sama dengan Baris B.`);
+      if(state.A.c !== state.B.r) return showError(`Kolom A harus sama kaya Baris B.`);
       renderResult(`Matriks A × Matriks B`, renderMatrixGrid(MathOp.multiply(A, B)));
     }
   };
@@ -145,16 +149,23 @@
     document.getElementById(`btn-det${mat}`).addEventListener('click', () => {
       let data = getMatrix(`mat${mat}`, state[mat].r, state[mat].c);
       if(!data.isValid) return showError(`ISI YANG BENER WOE!!!`);
-      if(state[mat].r !== state[mat].c) return showError(`HARUS PERSEGI MATRIKSNYA!!!`);
+      if(state[mat].r !== state[mat].c) return showError(`HARUS PERSEGI MATRIKSNYA WOE!!!`);
       
       let rounded = Math.round(MathOp.determinant(data.matrix) * 10000) / 10000;
-      renderResult(`Determinan Matriks ${mat}`, `<div class="result-num">${rounded}</div>`);
+      
+      let pesanInvers = (rounded !== 0) 
+        ? "<div style='margin-top: 15px; font-size: 1.1rem; font-weight: 700; color: #2a8a5a;'>MATRIKSNYA PUNYA INVERS 🤘😝🤘</div>" 
+        : "<div style='margin-top: 15px; font-size: 1.1rem; font-weight: 700; color: #c62828;'>MATRIKSNYA GA PUNYA INVERS 🤘😝🤘</div>";
+      
+      let gabunganHTML = `<div class="result-num">${rounded}</div>` + pesanInvers;
+      
+      renderResult(`Determinan Matriks ${mat}`, gabunganHTML);
     });
   });
 
   document.getElementById('btn-rand').addEventListener('click', () => {
     document.querySelectorAll('.cell').forEach(c => { c.value = Math.floor(Math.random() * 20) - 10; c.classList.remove('err'); });
-    showToast("Angkanya diacak kaya hidup kamu yang acak-acakan, EHH UPSS GA SENGAJA");
+    showToast("Angkanya diacak kaya hidup kamu yang acak-acakan, EHH UPSS");
   });
 
   document.getElementById('btn-iden').addEventListener('click', () => {
@@ -168,7 +179,7 @@
       }
     });
     if(applied) showToast("Matriks Identitas DONE BANG! 😎");
-    else showToast("IDENTITAS CUMA BUAT MATRIKS PERSEGI!!!");
+    else showToast("IDENTITAS CUMA BISA MATRIKS PERSEGI!!!");
   });
 
   document.getElementById('btn-clr').addEventListener('click', () => {
@@ -183,7 +194,7 @@
   function initAudio() {
     bgMusic.play().then(() => {
       ['click', 'keydown', 'touchstart'].forEach(e => document.body.removeEventListener(e, initAudio));
-    }).catch(err => console.warn("Nunggu user trigger audio."));
+    }).catch(err => console.warn("Nunggu trigger dari user."));
   }
   ['click', 'keydown', 'touchstart'].forEach(e => document.body.addEventListener(e, initAudio));
 })();
