@@ -3,21 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MY MATRIX GUA</title>
+  <title>BUKANKAH INI MY MATRIX?</title>
   
   <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  
   <link rel="stylesheet" href="style.css" />
-  
   <script src="matriks.js" defer></script>
 </head>
 <body>
 
-<body>
-
 <audio id="bg-music" loop preload="auto">
   <source src="assets/The 1975 - About You.mp3" type="audio/mpeg">
-</audio> 
+</audio>
 
 <div class="math-bg" id="math-bg"></div>
 
@@ -30,13 +26,46 @@
 
   <div class="card" id="step-1">
     <div class="card-label"><span class="num">1</span> Mau matrix ordo berapa guys?</div>
-    <div class="order-row">
-      <label>Ordo:</label>
-      <div class="stepper">
-        <button class="step-btn" id="btn-dec">−</button>
-        <span id="order-display">3</span>
-        <button class="step-btn" id="btn-inc">+</button>
+    
+    <div class="matrix-setup-container">
+      <div class="matrix-setup-box">
+        <h3>Matriks A</h3>
+        <div class="order-row">
+          <div class="stepper">
+            <span class="step-label">Baris</span>
+            <button class="step-btn" id="rA-dec">−</button>
+            <span id="disp-rA">3</span>
+            <button class="step-btn" id="rA-inc">+</button>
+          </div>
+          <div class="stepper">
+            <span class="step-label">Kolom</span>
+            <button class="step-btn" id="cA-dec">−</button>
+            <span id="disp-cA">3</span>
+            <button class="step-btn" id="cA-inc">+</button>
+          </div>
+        </div>
       </div>
+
+      <div class="matrix-setup-box">
+        <h3>Matriks B</h3>
+        <div class="order-row">
+          <div class="stepper">
+            <span class="step-label">Baris</span>
+            <button class="step-btn" id="rB-dec">−</button>
+            <span id="disp-rB">3</span>
+            <button class="step-btn" id="rB-inc">+</button>
+          </div>
+          <div class="stepper">
+            <span class="step-label">Kolom</span>
+            <button class="step-btn" id="cB-dec">−</button>
+            <span id="disp-cB">3</span>
+            <button class="step-btn" id="cB-inc">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div style="text-align: right; margin-top: 15px;">
       <button class="btn btn-main" id="btn-gen">Buat Matriks</button>
     </div>
   </div>
@@ -44,15 +73,30 @@
   <div id="matrix-section">
     <div class="card">
       <div class="card-label"><span class="num">2</span> Input angkanya CEPAT!!!</div>
-      <div class="matrix-scroll">
-        <div class="m-grid" id="m-grid"></div>
+      
+      <div class="matrix-inputs-wrapper">
+        <div class="matrix-col">
+          <h3 class="matrix-title">Matriks A</h3>
+          <div class="matrix-scroll"><div class="m-grid" id="grid-a"></div></div>
+        </div>
+        <div class="matrix-col">
+          <h3 class="matrix-title">Matriks B</h3>
+          <div class="matrix-scroll"><div class="m-grid" id="grid-b"></div></div>
+        </div>
       </div>
+      
       <div class="err-msg" id="err-msg">ISI YANG BENER WOE!!!</div>
       
-      <div class="act-row">
-        <button class="btn btn-calc" id="btn-calc">Hitung Determinan</button>
-        <button class="btn btn-act" id="btn-rand">Acak</button>
+      <div class="act-row-ops">
+        <button class="btn btn-calc" id="btn-add">A + B</button>
+        <button class="btn btn-calc" id="btn-sub">A − B</button>
+        <button class="btn btn-calc" id="btn-mul">A × B</button>
+        <button class="btn btn-act" id="btn-detA">Det(A)</button>
+        <button class="btn btn-act" id="btn-detB">Det(B)</button>
+      </div>
+      <div class="act-row" style="margin-top: 15px; border-top: 2px dashed var(--sky-border); padding-top: 15px;">
         <button class="btn btn-act" id="btn-iden">Identitas</button>
+        <button class="btn btn-act" id="btn-rand">Acak</button>
         <button class="btn btn-act" id="btn-clr">Hapus</button>
       </div>
     </div>
@@ -60,13 +104,12 @@
 
   <div id="result-section">
     <div class="card">
-      <div class="card-label"><span class="num">3</span> Nih hasilnya!</div>
+      <div class="card-label"><span class="num">3</span>nih hasilnya 😒</div>
       <div class="result-box">
-        <h3>det ( A ) =</h3>
-        <div class="result-num" id="result-num">0</div>
+        <h3 id="res-title">Hasil =</h3>
+        <div id="result-content" class="matrix-scroll"></div>
         <p id="result-note"></p>
       </div>
-      <button class="btn btn-reset" id="btn-reset">🔄 Hitung Ulang</button>
     </div>
   </div>
 
