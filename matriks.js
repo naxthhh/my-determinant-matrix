@@ -85,6 +85,8 @@
     return { matrix, isValid };
   };
 
+  //LOGIKA + & - DAM PERKALIAN
+
   const MathOp = {
     addSub: (m1, m2, isAdd) => m1.map((row, i) => row.map((val, j) => isAdd ? val + m2[i][j] : val - m2[i][j])),
     multiply: (m1, m2) => {
@@ -92,7 +94,7 @@
       for(let i=0; i<m1.length; i++) for(let j=0; j<m2[0].length; j++) for(let k=0; k<m1[0].length; k++) result[i][j] += m1[i][k] * m2[k][j];
       return result;
     },
-    determinant: (matrix) => {
+    determinant: (matrix) => {        // logika determinan
       let n = matrix.length; if(n===1) return matrix[0][0];
       let m = matrix.map(r => [...r]), det = 1;
       for (let i = 0; i < n; i++) {
@@ -164,7 +166,7 @@
   });
 
   document.getElementById('btn-rand').addEventListener('click', () => {
-    document.querySelectorAll('.cell').forEach(c => { c.value = Math.floor(Math.random() * 20) - 10; c.classList.remove('err'); });
+    document.querySelectorAll('.cell').forEach(c => { c.value = Math.floor(Math.random() * 20) - 10; c.classList.remove('err'); });  // logika random matriks
     showToast("Angkanya diacak kaya hidup kamu yang acak-acakan, EHH UPSS");
   });
 
