@@ -85,7 +85,7 @@
     return { matrix, isValid };
   };
 
-  //LOGIKA + & - DAM PERKALIAN
+  //LOGIKA + & - DAN PERKALIAN
 
   const MathOp = {
     addSub: (m1, m2, isAdd) => m1.map((row, i) => row.map((val, j) => isAdd ? val + m2[i][j] : val - m2[i][j])),
